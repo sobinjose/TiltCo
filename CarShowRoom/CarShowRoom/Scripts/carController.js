@@ -35,8 +35,8 @@ app.controller("carController", function ($scope, carFactory, $http) {
 
     function getFormData() {
         carFactory.getFormData(function (results) {
-            $scope.carMakes = results.carMakes;
-            $scope.carModels = results.carModels;
+            $scope.carMakes = results.carMake;
+            $scope.carModels = results.carModel;
         })
     }
     //Get all car makes

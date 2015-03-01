@@ -1,4 +1,5 @@
 ﻿using CarShowRoom.DAL;
+using CarShowRoom.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,11 @@ namespace CarShowRoom.Controllers
 
         CarDBEntities db = new CarDBEntities();
         // GET api/car
-        public object Get()
-        {
-            var carMakes = db.CarMakes.AsEnumerable();
-            var carModels = db.CarModels.AsEnumerable();
-            object objForm = new { carMakes, carModels };
-            return objForm;
+        public CarList Get()
+        {   var carList = new CarList();
+            carList.carMake = db.CarMakes.ToList();
+            carList.carModel = db.CarModels.ToList();
+            return carList;
         }
 
         // GET api/car/5
