@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/carController.js"></script>
+<form name="NewModel">
+    <div ng-controller="carController" class="form-horizontal">
+        <div class="form-group">
+            <br />
+            <br />
+            <br />
+            <label for="make" class="col-md-1 control-label">Car Make</label>
+            <div class="col-md-2">
+                <select ng-model="make" ng-options="item as item.Make for item in carMakes" ng-change="changeValue(make)" class="dropdown form-control">
+                    <option value="" selected>-- Choose Make --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="model" class="col-md-1 control-label">Model</label>
+            <div class="col-md-2">
+                <select ng-model="model" class="dropdown form-control">
+                    <option value="" selected>-- Choose Model --</option>
+                    <option ng-repeat="model in carModels" value="{{model.ID}}">{{model.Model}}</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <h4><a href="#" ng-click="showDetails = ! showDetails">Add New Model</a></h4>
+        <div ng-show="showDetails">
+
+            <div ng-controller="carController" class="form-horizontal">
+                <br />
+                <br />
+                <strong class="error">{{ error }}</strong>
+                <div class="form-group">
+                    <label for="carModel" class="col-md-1 control-label">Make Id</label>
+                    <div class="col-md-2">
+                        <input type="text" ng-model="newmodel.make_id" class="form-control" required readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="make" class="col-md-1 control-label">Car Make</label>
+                    <div class="col-md-2">
+                        <select ng-model="newmodel.make" ng-options="item as item.Make for item in carMakes" ng-change="findIdFromMake(newmodel.make)" class="dropdown form-control" required>
+                            <option value="" selected>-- Choose Make --</option>
+                            @*<option ng-repeat="model in carMakes" value="{{model.ID}}">{{model.Make}}</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="carModel" class="col-md-1 control-label">Model</label>
+                    <div class="col-md-2">
+                        <input type="text" ng-model="newmodel.model" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Add" ng-click="Save()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
